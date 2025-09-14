@@ -15,7 +15,6 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-
     /* 左側側邊欄 */
     .sidebar {
       width: 220px;
@@ -49,7 +48,6 @@
       background-color: #34495e;
     }
 
-
     /* 主內容區 */
     .main {
       flex: 1;
@@ -57,10 +55,10 @@
       box-sizing: border-box;
     }
 
-
     /* 工具列 */
     .toolbar {
       display: flex;
+      flex-wrap: wrap;
       gap: 15px;
       margin-bottom: 20px;
       align-items: center;
@@ -79,7 +77,6 @@
       border: none;
     }
 
-
     .content-section {
       background-color: white;
       padding: 20px;
@@ -89,7 +86,6 @@
       color: #333;
       transition: background-color 0.3s, color 0.3s, font-size 0.3s, font-family 0.3s;
     }
-
 
     /* Footer */
     .footer {
@@ -104,7 +100,27 @@
       right: 0;
     }
 
+    /* 手動切換到手機模式的樣式 */
+    body.mobile-view {
+      flex-direction: column;
+    }
+    body.mobile-view .sidebar {
+      width: 100%;
+      text-align: center;
+    }
+    body.mobile-view .main {
+      padding: 15px;
+    }
+    body.mobile-view .content-section {
+      font-size: 18px; /* 手機模式字體稍微大一點 */
+      padding: 15px;
+    }
+    body.mobile-view .footer {
+      position: static;
+      left: 0;
+    }
 
+    /* 自動響應式（備用） */
     @media (max-width: 768px) {
       body {
         flex-direction: column;
@@ -125,17 +141,17 @@
   <div class="sidebar">
     <h2>小星網站</h2>
     <ul>
-<li><a href="index.html">首頁</a></li>
-<li><a href="novel.html" class="active">小說</a></li>
-<li><a href="#">影片</a></li>
-<li><a href="#">遊戲</a></li>
-<li><a href="#">聯絡我</a></li>
-  </ul>
-</div>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="novel.html" class="active">小說</a></li>
+      <li><a href="#">影片</a></li>
+      <li><a href="#">遊戲</a></li>
+      <li><a href="#">聯絡我</a></li>
+    </ul>
+  </div>
 
   <!-- 主內容區 -->
   <div class="main">
-    <!-- 工具列：閱讀模式 & 字體設定 -->
+    <!-- 工具列 -->
     <div class="toolbar">
       <label>閱讀模式：
         <select id="themeSelect">
@@ -145,7 +161,6 @@
         </select>
       </label>
 
-
       <label>字體：
         <select id="fontSelect">
           <option value="'Noto Sans TC', sans-serif">Noto Sans TC</option>
@@ -153,7 +168,6 @@
           <option value="'Noto Serif TC', serif">Noto Serif TC</option>
         </select>
       </label>
-
 
       <label>字體大小：
         <select id="fontSizeSelect">
@@ -163,25 +177,27 @@
           <option value="22px">22px</option>
         </select>
       </label>
+
       <label>目錄：
-        <select id="fontSizeSelect">
+        <select id="chapterSelect">
           <option value="第一章">第一章</option>
           <option value="第二章">第二章</option>
           <option value="第三章">第三章</option>
           <option value="第四章">第四章</option>
         </select>
       </label>
+
+      <!-- 手動切換手機/電腦版 -->
+      <button id="toggleViewBtn">切換手機/電腦模式</button>
     </div>
 
+    <!-- 進度條 -->
+    <div id="progressContainer"><div id="progressBar"></div></div>
 
-   <!-- 進度條 -->
-  <div id="progressContainer"><div id="progressBar"></div></div>
-
-
-  <div class="main">
-<div class="content-section" id="novelContent">
-    <h1>穿越雅典：與阿斯帕西亞並肩的日子</h1>
-      <p>我叫克麗奧，名字在雅典再普通不過。那天，我只是坐在圖書館讀一本厚重的歷史書，翻到「阿斯帕西亞」的名字時，眼皮一沉，下一秒便聽見了嘈雜的人聲和馬蹄聲。</p>
+    <div class="content-section" id="novelContent">
+      <h1>穿越雅典：與阿斯帕西亞並肩的日子</h1>
+      <!-- 你的小說內容 -->
+        <p>我叫克麗奧，名字在雅典再普通不過。那天，我只是坐在圖書館讀一本厚重的歷史書，翻到「阿斯帕西亞」的名字時，眼皮一沉，下一秒便聽見了嘈雜的人聲和馬蹄聲。</p>
       <p>睜開眼，我站在一條鋪滿白色石板的街道上。炙熱的太陽灑下，男人們披著長袍在市場爭論著城邦的軍事策略，女人們大多低頭急行，避免與陌生人對視。空氣裡混雜著橄欖油和羊奶的味道。我不敢亂動，只好隨著人群走。直到一個柔和的聲音喊住我：「姑娘，你看起來迷路了。」我轉頭，看見一個眼神明亮的女子，她的姿態自信，像是與周遭格格不入，卻沒有絲毫畏懼。她就是阿斯帕西亞。<p>
 
 <p>起初，我只是被她收留在家裡——一個比普通雅典女人寬敞得多的宅邸。阿斯帕西亞並非生於雅典，而是來自米利都，這讓她比雅典女子擁有更多自由。每天晚上，她都邀請學者、哲學家和政治家們來討論城邦大事。我坐在角落聽著，從未見過一個女人能在男人面前如此自在地發言，甚至辯駁。「為什麼你敢這麼做？」某天，我忍不住問。阿斯帕西亞微微一笑，將長髮挽到耳後：「因為如果我沉默，誰會說出我們的想法？男人只看到女人的針線和廚房，卻不知道我們也有靈魂。」她說這句話的時候，眼底有光，卻也有一瞬的猶豫。我後來才知道，她雖被伯里克里視為摯愛，卻始終背負著罵名——「敗壞雅典道德的女人」。<p>
@@ -200,21 +216,20 @@
 阿斯帕西亞沉默了好一會兒，然後笑了：「你讓我想起年輕時的自己。」
 
 </p>
+
     </div>
   </div>
-
 
   <div class="footer">
     © New repository2025 小星設計 | 聯絡信箱: xiaoxing@example.com
   </div>
-
 
   <script>
     const themeSelect = document.getElementById("themeSelect");
     const fontSelect = document.getElementById("fontSelect");
     const fontSizeSelect = document.getElementById("fontSizeSelect");
     const content = document.getElementById("novelContent");
-
+    const toggleViewBtn = document.getElementById("toggleViewBtn");
 
     themeSelect.addEventListener("change", function() {
       const value = themeSelect.value;
@@ -230,16 +245,17 @@
       }
     });
 
-
     fontSelect.addEventListener("change", function() {
       content.style.fontFamily = fontSelect.value;
     });
 
-
     fontSizeSelect.addEventListener("change", function() {
       content.style.fontSize = fontSizeSelect.value;
+    });
+
+    toggleViewBtn.addEventListener("click", function () {
+      document.body.classList.toggle("mobile-view");
     });
   </script>
 </body>
 </html>
-
