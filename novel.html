@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小星小說閱讀頁面</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+
+    /* 左側側邊欄 */
+    .sidebar {
+      width: 220px;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      text-align: center;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+    .sidebar ul li a {
+      display: block;
+      color: #ecf0f1;
+      text-decoration: none;
+      font-size: 1.1em;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+    .sidebar ul li a:hover {
+      background-color: #34495e;
+    }
+
+
+    /* 主內容區 */
+    .main {
+      flex: 1;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+
+    /* 工具列 */
+    .toolbar {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .toolbar select, .toolbar button {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .toolbar button:hover {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+    }
+
+
+    .content-section {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      line-height: 1.7;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s, font-size 0.3s, font-family 0.3s;
+    }
+
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #777;
+      background-color: #ecf0f1;
+      position: fixed;
+      bottom: 0;
+      left: 220px;
+      right: 0;
+    }
+
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        text-align: center;
+      }
+      .footer {
+        left: 0;
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 側邊欄 -->
+  <div class="sidebar">
+    <h2>小星網站</h2>
+    <ul>
+<li><a href="index.html">首頁</a></li>
+<li><a href="novel.html" class="active">小說</a></li>
+<li><a href="#">影片</a></li>
+<li><a href="#">遊戲</a></li>
+<li><a href="#">聯絡我</a></li>
+  </ul>
+</div>
+
+  <!-- 主內容區 -->
+  <div class="main">
+    <!-- 工具列：閱讀模式 & 字體設定 -->
+    <div class="toolbar">
+      <label>閱讀模式：
+        <select id="themeSelect">
+          <option value="light">白底黑字</option>
+          <option value="dark">黑底白字</option>
+          <option value="eye">護眼模式</option>
+        </select>
+      </label>
+
+
+      <label>字體：
+        <select id="fontSelect">
+          <option value="'Noto Sans TC', sans-serif">Noto Sans TC</option>
+          <option value="'Microsoft JhengHei', sans-serif">微軟正黑體</option>
+          <option value="'Noto Serif TC', serif">Noto Serif TC</option>
+        </select>
+      </label>
+
+
+      <label>字體大小：
+        <select id="fontSizeSelect">
+          <option value="16px">16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="22px">22px</option>
+        </select>
+      </label>
+      <label>目錄：
+        <select id="fontSizeSelect">
+          <option value="第一章">第一章</option>
+          <option value="第二章">第二章</option>
+          <option value="第三章">第三章</option>
+          <option value="第四章">第四章</option>
+        </select>
+      </label>
+    </div>
+
+
+   <!-- 進度條 -->
+  <div id="progressContainer"><div id="progressBar"></div></div>
+
+
+  <div class="main">
+<div class="content-section" id="novelContent">
+    <h1>穿越雅典：與阿斯帕西亞並肩的日子</h1>
+      <p>我叫克麗奧，名字在雅典再普通不過。那天，我只是坐在圖書館讀一本厚重的歷史書，翻到「阿斯帕西亞」的名字時，眼皮一沉，下一秒便聽見了嘈雜的人聲和馬蹄聲。</p>
+      <p>睜開眼，我站在一條鋪滿白色石板的街道上。炙熱的太陽灑下，男人們披著長袍在市場爭論著城邦的軍事策略，女人們大多低頭急行，避免與陌生人對視。空氣裡混雜著橄欖油和羊奶的味道。我不敢亂動，只好隨著人群走。直到一個柔和的聲音喊住我：「姑娘，你看起來迷路了。」我轉頭，看見一個眼神明亮的女子，她的姿態自信，像是與周遭格格不入，卻沒有絲毫畏懼。她就是阿斯帕西亞。<p>
+
+<p>起初，我只是被她收留在家裡——一個比普通雅典女人寬敞得多的宅邸。阿斯帕西亞並非生於雅典，而是來自米利都，這讓她比雅典女子擁有更多自由。每天晚上，她都邀請學者、哲學家和政治家們來討論城邦大事。我坐在角落聽著，從未見過一個女人能在男人面前如此自在地發言，甚至辯駁。「為什麼你敢這麼做？」某天，我忍不住問。阿斯帕西亞微微一笑，將長髮挽到耳後：「因為如果我沉默，誰會說出我們的想法？男人只看到女人的針線和廚房，卻不知道我們也有靈魂。」她說這句話的時候，眼底有光，卻也有一瞬的猶豫。我後來才知道，她雖被伯里克里視為摯愛，卻始終背負著罵名——「敗壞雅典道德的女人」。<p>
+
+<p>我常陪她散步到阿哥拉市場，沿途有人指指點點。「就是她，教壞伯里克里的女人。」<p>
+<p>「若不是她，伯里克里不會讓女人涉政。」阿斯帕西亞沒有停下腳步，只是拉著我繼續走。可回到家，她會靜靜坐在院子裡，撫摸著手上的石頭雕刻。我知道，她不是不在意，只是不願示弱。<p>
+<p>某天夜裡，她對我說：「克麗奧，我常問自己，我的辯論是否真的改變了什麼？抑或只是在讓人更討厭女人？」幾週後，蘇格拉底來了。他和阿斯帕西亞辯論得熱烈，話題從正義談到愛情，最後談到教育。「如果我們想要更好的城邦，就必須教育女人。」阿斯帕西亞堅定地說。蘇格拉底笑著摸下巴：「或許你說得對，阿斯帕西亞。若靈魂沒有性別，為何教育要分？」那一刻，我看見阿斯帕西亞眼底的光比月亮還亮。她不再只是辯論，而是把心中理想活出來。<p>
+
+<p>但並非所有人都認同。一次宴會後，有人公開指控她腐化雅典風氣，要她上法庭辯護。那晚，她第一次在我面前落淚。「如果我輸了，不只是我，所有敢說話的女人都會被噤聲。」她抓著我的手，力道緊到我覺得指節發白。<p>
+<p>我陪著她到法庭，她挺直腰桿，沒有哭泣，沒有退縮。她用理性辯駁，用智慧拆解指控，最後獲得釋放。當我們走出法庭時，街上仍有人罵她，但也有年輕女子偷偷對她微笑。「看見了嗎？」我說，「她們開始相信自己也能說話了。」阿斯帕西亞望向遠方，神情有些恍惚，像是在與未來對話。<p>
+<p>「或許有一天，女人不必依附於男人的名字，也能擁有自己的聲音。」<p>
+
+<p>離開雅典的那一天，我又聽見那熟悉的耳鳴，世界像被拉扯般翻轉。我最後看到的是阿斯帕西亞站在院子裡，抬頭看著夜空。她的眼神不再只是孤獨，而是有了堅定的方向。<p>
+<p>回到現代，我合上書，心跳還在加速。我知道，那不只是歷史的記載，而是我親眼看見的一段生命——一個敢於挑戰規則、承受孤立、卻仍選擇發聲的女人。<p>
+<p>阿斯帕西亞或許從未知道，她的勇敢在千年後仍能點亮另一個女孩的心。我想了很久才回答：「可是，如果妳不做，他們就永遠覺得女人不配說話。」<p>
+阿斯帕西亞沉默了好一會兒，然後笑了：「你讓我想起年輕時的自己。」
+
+</p>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    © New repository2025 小星設計 | 聯絡信箱: xiaoxing@example.com
+  </div>
+
+
+  <script>
+    const themeSelect = document.getElementById("themeSelect");
+    const fontSelect = document.getElementById("fontSelect");
+    const fontSizeSelect = document.getElementById("fontSizeSelect");
+    const content = document.getElementById("novelContent");
+
+
+    themeSelect.addEventListener("change", function() {
+      const value = themeSelect.value;
+      if (value === "dark") {
+        content.style.backgroundColor = "#1a1a1a";
+        content.style.color = "#fff";
+      } else if (value === "eye") {
+        content.style.backgroundColor = "#f7f4e9";
+        content.style.color = "#333";
+      } else {
+        content.style.backgroundColor = "#fff";
+        content.style.color = "#333";
+      }
+    });
+
+
+    fontSelect.addEventListener("change", function() {
+      content.style.fontFamily = fontSelect.value;
+    });
+
+
+    fontSizeSelect.addEventListener("change", function() {
+      content.style.fontSize = fontSizeSelect.value;
+    });
+  </script>
+</body>
+</html>
+
